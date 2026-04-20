@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OBMC Student List</title>
+    <style>
+        body { 
+            font-family: Helvetica, sans-serif,; 
+            max-width: 600px; 
+            margin: 20px auto; 
+            padding: 20px; 
+            border: 10px solid #ccc; 
+            background-color: rgb(35, 29, 66);
+        }
+        .header { 
+            text-align: center; 
+            background-color: #5069bb
+        }
+        .form-group { 
+            margin-bottom: 10px;
+            background-color: #5069bb;
+        }
+        input { 
+            padding: 8px; 
+            width: 95%; 
+            margin-top: 5px; 
+        }
+        button { 
+            padding: 10px; 
+            cursor: pointer; 
+            background-color: #314152; 
+            color: white; 
+            border: none; 
+            margin-top: 10px; 
+        }
+        .output-box { 
+            margin-top: 20px; 
+            border-top: 2px solid #333; 
+            padding-top: 10px; 
+            background-color: #5069bb;
+            text-align: center;
+        }
+    
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>OBMC Manual Student List</h1> <p>Hi! As you can see, there are three text boxes there. Just fill them up, and you have an addition to the list. Click show list and see your classmate list.</p> </div>
+
+    <div class="form-group">
+        <input type="text" id="name" placeholder="Name">
+        <input type="text" id="section" placeholder="Section">
+        <input type="text" id="subject" placeholder="Favorite Subject">
+        <button onclick="addClassmate()">Add Classmate</button>
+        <button onclick="toggleList()">Show List</button> </div>
+
+    <div class="output-box">
+        <h3>Classmate List</h3> <div id="displayArea"></div>
+    </div>
+
+    <script>
+
+        let classmates = [
+            { name: "Arianne", section: "10 - Ruby", subject: "English" },
+            { name: "Sophia", section: "10 - Emerald", subject: "Social Studies" },
+            { name: "Dylan", section: "10 - Ruby", subject: "Science" },
+            { name: "Uno", section: "10 - Ruby", subject: "Math" },
+            { name: "Lesvie", section: "10 - Emerald", subject: "Recess" }
+        ];
+
+        function addClassmate() {
+            const name = document.getElementById('name').value;
+            const section = document.getElementById('section').value;
+            const subject = document.getElementById('subject').value;
+
+            if(name, section, subject) {
+                classmates.push({ name, section, subject });
+                alert("Added " + name + " from " + section + "!");
+                document.getElementById('name').value = '';
+                document.getElementById('section').value = '';
+                document.getElementById('subject').value = '';
+                renderList();
+            }
+        }
+
+        function renderList() {
+            const area = document.getElementById('displayArea');
+            area.innerHTML = '';
+            classmates.forEach(c => {
+                const p = document.createElement('p');
+                p.textContent = `Hi! I am ${c.name} from ${c.section}. My favorite subject is ${c.subject}.`;
+                area.appendChild(p);
+            });
+        }
+
+        function toggleList() {
+            renderList();
+        }
+    </script>
+</body>
+</html>
